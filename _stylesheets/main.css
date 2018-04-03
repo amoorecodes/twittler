@@ -48,6 +48,7 @@ table {
 /*GLOBAL STYLES*/
 footer, header {
   background-color: #0084b4 ; 
+  text-indent: 50px
   
 }
 
@@ -67,6 +68,16 @@ main div {
 
 .upper-logo {
   color: white;
+  text-align: center;
+  margin-bottom: 0px;
+  font-size: 2.5em;
+}
+.lower-logo {
+  color: #999;
+  text-align: center;
+  margin-top: 0px;
+  font-size: 2rem;
+
 }
 
 
@@ -81,13 +92,32 @@ main div {
 
 /*POST STYLE*/
 
-.tweet   {
-  margin-left: 10px;
+li {
+  background-color: rgb(20, 110, 150, 0.4);
+  margin: 8px 0;
+  padding: 2px;
+  
+}
+
+.tweet {
+  margin-left: 
 }
 .info {
   display: block;
   margin-right: 10px;
   margin-bottom: 5px;
+}
+img {
+  float: left;
+  height: 45px;
+  object-fit: cover;
+  margin-top: 0px;
+}
+
+span .post-time {
+  padding: 10px;
+  margin-top: 5px;
+  overflow: auto;
 }
 
 button {
@@ -100,10 +130,9 @@ button {
     display: inline-block;
     font-size: 12px;
     border-radius: 8px;
-    margin-bottom: 8px;
-    
-
+    margin-bottom: 8px;    
 }
+
 button:hover {
   background-color: white;
   color: #008CBA;
