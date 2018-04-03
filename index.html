@@ -1,25 +1,88 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel='stylesheet' type='text/css' href="_stylesheets/main.css">
   </head>
   <body>
+        <header>
+      <h1 class="upper-logo">Bare Tweets.</h1>
+      <h1 class="lower-logo">No Drama.</h1>
+    </header>
+    <main>
+      <section class='new tweet'>
+
+      </section>
+      <section id="feed">
+        <ul class='feed'>
+         <!--  <li>
+            <div class='tweet'>
+            <div class='info'>
+              <a href='#' class='username'>username</a>
+              <span class='post-time'>postTime</span>
+            </div>
+            <h4> post itself </h4>
+            <button>LIKE</button>
+            <button>COMMENT</button> -->
+
+
+        <!--Here goes the tweets. They should be individual blocks. 
+            Within a block, there shouuld be a block with Username info and data on tweet.
+            Underneath, block with tweet.  -->
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <aside>
+      <!-- Here's a user side menu -->
+    </aside>
+
+    <footer>
+      <h3>Things To Come Up With</h2>
+      <div>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+        <p>Copyright 2018 by Arthur Moore</p>
+      </div>
+    </footer>
     <script>
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
+      $(document).ready(function() {
         var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+            while(index >= 0){
+              var $placeHolder = $('<li></li>');
+              var $tweetLayout = $('<div class="tweet"></div>');
+                $($placeHolder).append($tweetLayout);
 
+              var tweet = streams.home[index];  
+              var $tweet = $('<h4></h4>');
+              $tweet.text(tweet.message);
+                $($tweetLayout).append($tweet);
+
+              var $infoPanel = $('<div class="info"</div>');
+              var $author = $('<a class="username" href="#">' + tweet.user + '<a>');
+              var $time = $('<span class="post-time">' + tweet.created_at + '</span>');
+                $($infoPanel).append($author);
+
+              var $like = $('<button>LIKE</button>');
+              var $comment = $('<button>COMMENT</button>');
+                  $($placeHolder).append($infoPanel, $time, $tweet, $like, $comment);
+
+                  $('.feed').prepend($placeHolder);
+              index -= 1;
+            }
+      })
+
+      $(document).ready(function() {
+        $('.username').on('click', function() {
+          $('.feed').filter($('div > a'));
+        });
       });
 
     </script>
