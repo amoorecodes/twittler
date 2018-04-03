@@ -80,10 +80,17 @@
             }
       })
 
+      // $(document).ready(function() {
+      //   $('a .username').on('click', function() {
+      //     $('.feed').closest('li').show();
+      //   });
+      // });
+
       $(document).ready(function() {
-        $('.username').on('click', function() {
-          $('.feed').closest('li').show();
+        $('a .username').on('click', function() {
+          $(this).closest('li').addClass('active');
         });
+        $('.feed').toggleClass('active');
       });
 
     </script>
