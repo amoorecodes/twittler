@@ -8,10 +8,13 @@
     <link rel='stylesheet' type='text/css' href="_stylesheets/main.css">
   </head>
   <body>
-        <header>
+    <header>
       <h1 class="upper-logo">Bare Tweets.</h1>
       <h1 class="lower-logo">No Drama.</h1>
     </header>
+      <aside>
+      <button class='refresh'>REFRESH</button>
+    </aside>
     <main>
       <section class='new tweet'>
 
@@ -38,10 +41,6 @@
       </section>
     </main>
 
-    <aside>
-      <!-- Here's a user side menu -->
-    </aside>
-
     <footer>
       <h3>Things To Come Up With</h2>
       <div>
@@ -59,6 +58,7 @@
               var tweet = streams.home[index];  
               var $tweet = $('<h4 class="message"></h4>');
               $tweet.text(tweet.message);
+              var $tweetTime = translateTime(tweet.created_at.getTime());
               var $placeHolder = $('<li class="post" id="' + tweet.user + '"></li>');
               var $tweetLayout = $('<div class="tweet"></div>');
                 $($placeHolder).append($tweetLayout);
@@ -67,7 +67,7 @@
               var $infoPanel = $('<div class="info"</div>');
               var $picture = $('<img src="https://www.atomix.com.au/media/2015/06/atomix_user31.png"></img>')
               var $author = $('<a class="username" id="' + tweet.user + '" href="#">' + tweet.user + '<a>');
-              var $time = $('<span class="post-time">' + tweet.created_at.toString().slice(0,21) + '</span>');
+              var $time = $('<span class="post-time">' + $tweetTime + '</span>');
                 $($infoPanel).append($picture, $author);
 
               var $like = $('<button>LIKE</button>');
@@ -87,6 +87,10 @@
         $('.post').filter(function(element) {
           return $(this).attr('id') !== userId;
         }).hide();
+      });
+
+      $('.refresh').on('click', function() {
+         location.reload();
       });
 
 
@@ -125,7 +129,7 @@
     //   });
 
 
-      })
+      });
     </script>
   </body>
 </html>
