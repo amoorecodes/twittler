@@ -56,18 +56,17 @@
       $(document).ready(function() {
         var index = streams.home.length - 1;
             while(index >= 0){
-              var $placeHolder = $('<li></li>');
-              var $tweetLayout = $('<div class="tweet"></div>');
-                $($placeHolder).append($tweetLayout);
-
               var tweet = streams.home[index];  
               var $tweet = $('<h4 class="message"></h4>');
               $tweet.text(tweet.message);
+              var $placeHolder = $('<li class="post" id="' + tweet.user + '"></li>');
+              var $tweetLayout = $('<div class="tweet"></div>');
+                $($placeHolder).append($tweetLayout);
                 $($tweetLayout).append($tweet);
 
               var $infoPanel = $('<div class="info"</div>');
               var $picture = $('<img src="https://www.atomix.com.au/media/2015/06/atomix_user31.png"></img>')
-              var $author = $('<a class="username" href="#">' + tweet.user + '<a>');
+              var $author = $('<a class="username" id="' + tweet.user + '" href="#">' + tweet.user + '<a>');
               var $time = $('<span class="post-time">' + tweet.created_at.toString().slice(0,21) + '</span>');
                 $($infoPanel).append($picture, $author);
 
@@ -78,21 +77,55 @@
                   $('.feed').prepend($placeHolder);
               index -= 1;
             }
-      })
+
+      // var filterPost = $('#post');
+      // var clickUser = $('a');
+      // for the love of GOD  72 ways of filtering didn't make it work. 
+
+      $('.username').click(function() {
+        var userId = $(this).attr('id');
+        $('.post').filter(function(element) {
+          return $(this).attr('id') !== userId;
+        }).hide();
+      });
+
+
+      // var douglasalhoun = $('.douglascalhoun');
+      // var mracus = $('.mracus');
+      // var sharksforcheap = $('.sharksforcheap');
+      // var shawndrost = $('.shawndrost');
 
       // $(document).ready(function() {
-      //   $('a .username').on('click', function() {
-      //     $('.feed').closest('li').show();
+      //   $(filterPost).on('click', 'a', function() {
+      //     // var classes = this.className; 
+      //     // var classList = $(this).className.split(/\s+/);
+      //        var className = $(this).attr('class');
+      //        // var className = $('#sidebar div:eq(14)').attr('class');
+      //     // \.className.split(/\s+/);
+      //     if($(className).hasClass('filtered')) {
+      //       $(className).removeClass('filtered'); 
+      //     } else {
+      //       $(className).addClass('filtered');
+      //     }
       //   });
       // });
 
-      $(document).ready(function() {
-        $('a .username').on('click', function() {
-          $(this).closest('li').addClass('active');
-        });
-        $('.feed').toggleClass('active');
-      });
 
+    // /*   $(document).ready(function() {
+    //     $('a').on('click', function() {
+    //     var className = $(this).attr('class');
+    //     $(className).hide();
+    //     });
+    //   });
+    //    */
+    //   $(document).ready(function() {
+    //     $('.feed').on('click', 'a', function() {
+    //       $('.filtered').hide();
+    //     })
+    //   });
+
+
+      })
     </script>
   </body>
 </html>
